@@ -1,13 +1,13 @@
-import type { NextConfig } from "next";
-
 /*
  * Старые адреса WordPress-версии oberon.kz сохраняются как постоянные редиректы,
  * чтобы не потерять накопленные ссылки и позиции в поиске.
+ *
+ * Файл в JS, а не в TypeScript: иначе Next.js сам вызывает нативный SWC,
+ * который на сервере Hoster.kz падает из-за старой glibc.
  */
 const legacyRedirects = [
   ["/service/informatsionnaya-bezopasnost", "/uslugi/informatsionnaya-bezopasnost"],
   ["/service/vyichislitelnyie-sistemyi", "/uslugi/vychislitelnye-sistemy"],
-  // Страницы сняты с сайта — старые адреса ведём в общие разделы.
   ["/service/obuchenie-i-sertifikatsiya", "/uslugi"],
   ["/service/telekomunikatsionnyie-i-strukturnyie-resheniya", "/uslugi"],
   ["/service/servisnoe-soprovozhdenie", "/uslugi"],
@@ -28,15 +28,20 @@ const legacyRedirects = [
   ["/partner/:slug", "/partnery"],
   ["/partner-category/:slug", "/partnery"],
   ["/kontaktyi", "/kontakty"],
-] as const;
+];
 
-const nextConfig: NextConfig = {
+const nextConfig = {
+  experimental: {
+    /* На linux/x64 Next считает платформу поддерживаемой и тянет .node-файл.
+       WASM нужен, потому что glibc на хостинге старше 2.29. */
+    useWasmBinary: true,
+  },
   async redirects() {
     return [
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
       {
         source: "/",
-        has: [{ type: "query" as const, key: "page_id", value: "19" }],
+        has: [{ type: "query", key: "page_id", value: "19" }],
         destination: "/kontakty",
         permanent: true,
       },
