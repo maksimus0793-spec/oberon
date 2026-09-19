@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+  Design tokens mirror the :root scale of oberon-it.ru so that both sites
+  share one visual language. Values are copied verbatim from its bundle.css.
+*/
+@theme {
+  --color-primary: #cc0000;
+  --color-primary-hover: #920000;
+  --color-primary-disabled: #e0e0e0;
+
+  --color-ink: #2a2a2a;
+  --color-ink-muted: #7a7a7a;
+  --color-ink-soft: #aaaaaa;
+  --color-ink-deep: #565656;
+
+  --color-line: #eaecef;
+  --color-line-strong: #dbdbdb;
+  --color-surface: #f6f7f8;
+  --color-surface-alt: #f5f5f5;
+  --color-slate: #54575a;
+
+  --color-navy: #0a1b2c;
+  --color-accent: #0087c9;
+  --color-accent-soft: #e5f7fd;
+
+  --radius-card: 24px;
+  --radius-shell: 40px;
+
+  --font-sans: var(--font-manrope), "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* 1758px is the max container width used across oberon-it.ru. */
+  .shell {
+    width: 100%;
+    max-width: 1758px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .shell-narrow {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .prose-oberon p {
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: 30px;
+    color: var(--color-ink-muted);
+  }
+
+  .prose-oberon p:last-child {
+    margin-bottom: 0;
+  }
+
+  .prose-oberon strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+}
+
+@keyframes oberon-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: oberon-marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
