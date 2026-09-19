@@ -4,7 +4,12 @@
  *
  * Файл в JS, а не в TypeScript: иначе Next.js сам вызывает нативный SWC,
  * который на сервере Hoster.kz падает из-за старой glibc.
+ *
+ * NEXT_TEST_WASM выставляем здесь: панель часто запускает `next build` напрямую,
+ * минуя scripts/build.mjs. Воркеры наследуют переменную после загрузки конфига.
  */
+process.env.NEXT_TEST_WASM = "1";
+
 const legacyRedirects = [
   ["/service/informatsionnaya-bezopasnost", "/uslugi/informatsionnaya-bezopasnost"],
   ["/service/vyichislitelnyie-sistemyi", "/uslugi/vychislitelnye-sistemy"],
@@ -31,11 +36,6 @@ const legacyRedirects = [
 ];
 
 const nextConfig = {
-  experimental: {
-    /* На linux/x64 Next считает платформу поддерживаемой и тянет .node-файл.
-       WASM нужен, потому что glibc на хостинге старше 2.29. */
-    useWasmBinary: true,
-  },
   async redirects() {
     return [
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
