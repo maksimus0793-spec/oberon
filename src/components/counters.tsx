@@ -32,6 +32,7 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 export function Counters() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const items = getCounters();
 
   useEffect(() => {
     const node = ref.current;
@@ -52,23 +53,34 @@ export function Counters() {
   }, []);
 
   return (
-    <section className="group relative mt-6 overflow-hidden py-20 text-white lg:mt-8 lg:py-28">
-      <div className="absolute inset-0 motion-safe:transition-transform motion-safe:duration-500 motion-safe:ease-out motion-safe:group-hover:scale-[1.02]" aria-hidden>
-        <picture>
-          <source media="(max-width: 768px)" srcSet="/media/stats-bg-mobile.jpg" />
-          <img src="/media/stats-bg.jpg" alt="" className="h-full w-full object-cover object-center" />
-        </picture>
-      </div>
+    <section className="shell py-10 lg:py-14">
+      <div
+        ref={ref}
+        className="relative overflow-hidden rounded-[40px] bg-primary px-6 py-16 text-white sm:px-10 lg:px-20 lg:py-24"
+      >
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <span className="absolute -bottom-[78%] left-1/2 h-[165%] w-[165%] -translate-x-1/2 rounded-[50%] bg-[#b00000]" />
+          <span className="absolute -bottom-[88%] left-1/2 h-[175%] w-[190%] -translate-x-1/2 rounded-[50%] bg-[#d41616]" />
+          <span className="absolute -bottom-[98%] left-1/2 h-[185%] w-[215%] -translate-x-1/2 rounded-[50%] bg-[#bb0505]" />
+        </div>
 
-      <div ref={ref} className="shell relative">
-        <h2 className="max-w-3xl text-[30px] font-semibold leading-tight lg:text-[44px]">
-          Наши достижения
-        </h2>
+        <div className="relative">
+          <h2 className="text-center text-[28px] font-medium leading-tight sm:text-[34px] lg:text-[40px]">
+            Реальные результаты. Реальное влияние.
+          </h2>
 
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-8">
-          {getCounters().map((c) => (
-            <Counter key={c.title} value={c.value} suffix={c.suffix} title={c.title} active={visible} />
-          ))}
+          <div className="relative mx-auto mt-14 max-w-5xl lg:mt-20">
+            <div
+              aria-hidden
+              className="absolute top-[4.6rem] right-[12%] left-[12%] hidden h-px bg-white/45 lg:block"
+            />
+
+            <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4 lg:gap-0">
+              {items.map((c) => (
+                <Counter key={c.title} value={c.value} suffix={c.suffix} title={c.title} active={visible} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -89,21 +101,18 @@ function Counter({
   const shown = useCountUp(value, active);
 
   return (
-    <div className="relative min-h-28 pl-8 lg:min-h-[220px] lg:pl-7">
-      <span
-        className="absolute top-1 left-0 h-0 w-0 border-x-[5px] border-b-[10px] border-x-transparent border-b-white"
-        aria-hidden
-      />
-      <span className="absolute top-3.5 bottom-0 left-[4px] w-0.5 bg-white" aria-hidden />
-
-      <p className="text-[40px] font-semibold leading-none lg:text-[56px]">
+    <div className="flex flex-col items-center text-center">
+      <p className="text-[40px] font-semibold leading-none tracking-tight sm:text-[48px] lg:text-[56px]">
         {shown}
         {suffix}
       </p>
-      <p className="mt-4 flex items-center gap-2.5 text-[15px] leading-6 text-white/90 lg:text-lg">
-        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#ee4832] shadow-[0_4px_10px_rgba(0,0,0,0.15)]" aria-hidden />
-        {title}
-      </p>
+
+      <span aria-hidden className="mt-4 flex h-10 flex-col items-center">
+        <span className="h-full w-px bg-white/55" />
+        <span className="mt-[-3px] h-2 w-2 rounded-full bg-white" />
+      </span>
+
+      <p className="mt-3 max-w-[11rem] text-[14px] leading-5 text-white/85 sm:text-[15px]">{title}</p>
     </div>
   );
 }
