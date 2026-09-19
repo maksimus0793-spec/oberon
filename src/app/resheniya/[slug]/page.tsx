@@ -28,7 +28,7 @@ export default async function SolutionPage({ params }: Props) {
   const solution = getSolution(slug);
   if (!solution) notFound();
 
-  const service = getService(solution.relatedService);
+  const service = solution.relatedService ? getService(solution.relatedService) : undefined;
   const others = solutions.filter((s) => s.slug !== solution.slug);
 
   return (

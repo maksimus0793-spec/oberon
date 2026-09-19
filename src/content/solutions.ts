@@ -1,6 +1,6 @@
 import type { ContentBlock } from "./services";
 
-export type SolutionIcon = "headset" | "shield" | "network" | "wrench" | "phone" | "server";
+export type SolutionIcon = "shield" | "network" | "wrench" | "phone" | "server";
 
 export type Solution = {
   slug: string;
@@ -8,7 +8,8 @@ export type Solution = {
   summary: string;
   icon: SolutionIcon;
   legacyPath: string;
-  relatedService: string;
+  /* Не у каждого направления есть парная услуга — тогда блок-ссылка не выводится. */
+  relatedService?: string;
   blocks: ContentBlock[];
 };
 
@@ -17,33 +18,6 @@ export type Solution = {
  * тексты ниже собраны из описаний соответствующих услуг и подлежат вычитке заказчиком.
  */
 export const solutions: Solution[] = [
-  {
-    slug: "kontakt-tsentry",
-    title: "Контакт-центры",
-    summary: "Центры обработки вызовов на базе Avaya — от 10 до 1000 агентов, с записью и контролем качества.",
-    icon: "headset",
-    legacyPath: "/dopservice/kontakt-tsentryi",
-    relatedService: "telekommunikatsionnye-resheniya",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Отдел, стоявший у истоков компании Oberon, проектирует и внедряет контакт-центры на базе Avaya — одного из лидеров мирового рынка. Мы подберём решение под задачу независимо от масштаба: и для площадки на 10 агентов, и для распределённого центра на 1000 рабочих мест.",
-      },
-      {
-        type: "paragraph",
-        text: "Современный центр обработки вызовов не обходится без систем записи разговоров и контроля качества обслуживания. В этом классе решений мы работаем с NICE и Verint, а инженеры компании имеют сертификаты вплоть до узкоспециализированных, таких как Nice Interaction Management R4.1 — Multiple Data Center.",
-      },
-      {
-        type: "list",
-        items: [
-          { text: "проектирование архитектуры контакт-центра и расчёт нагрузки;" },
-          { text: "внедрение платформы Avaya, интеграция с CRM и учётными системами;" },
-          { text: "системы записи разговоров, речевой аналитики и контроля качества;" },
-          { text: "сопровождение системы и консультации супервизоров после запуска." },
-        ],
-      },
-    ],
-  },
   {
     slug: "bezopasnost",
     title: "Информационная безопасность",
@@ -77,7 +51,6 @@ export const solutions: Solution[] = [
     summary: "Проектирование и модернизация корпоративных сетей — от СКС до отказоустойчивого ядра.",
     icon: "network",
     legacyPath: "/dopservice/seti-peredachi-dannyih",
-    relatedService: "telekommunikatsionnye-resheniya",
     blocks: [
       {
         type: "paragraph",
@@ -120,21 +93,20 @@ export const solutions: Solution[] = [
   {
     slug: "telefoniya",
     title: "Телефония",
-    summary: "Корпоративная IP-телефония на платформе Avaya: от IP Office до распределённых систем связи.",
+    summary: "Корпоративная IP-телефония: от компактных офисных решений до распределённых систем связи.",
     icon: "phone",
     legacyPath: "/dopservice/telefoniya",
-    relatedService: "telekommunikatsionnye-resheniya",
     blocks: [
       {
         type: "paragraph",
-        text: "Мы внедряем корпоративную телефонию на платформе Avaya — от компактных решений Avaya IP Office для небольшого офиса до распределённых систем связи с резервированием и несколькими площадками.",
+        text: "Мы внедряем корпоративную IP-телефонию любого масштаба — от компактного решения для одного офиса до распределённой системы связи с резервированием и несколькими площадками.",
       },
       {
         type: "list",
         items: [
           { text: "миграция с аналоговых и устаревших АТС на IP-телефонию;" },
-          { text: "унифицированные коммуникации и мобильные приложения Avaya;" },
-          { text: "интеграция телефонии с контакт-центром и бизнес-приложениями;" },
+          { text: "унифицированные коммуникации и мобильные приложения для сотрудников;" },
+          { text: "интеграция телефонии с CRM и бизнес-приложениями;" },
           { text: "диагностика проблем на стыке системы телефонии и локальной сети." },
         ],
       },

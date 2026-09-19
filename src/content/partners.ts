@@ -12,7 +12,6 @@ export type Partner = {
  * и добавьте поле logo, если нужны оригинальные знаки.
  */
 export const partners: Partner[] = [
-  { slug: "avaya", name: "Avaya", area: "Телефония и контакт-центры", key: true },
   { slug: "oracle", name: "Oracle", area: "СУБД и серверные платформы", key: true },
   { slug: "lenovo", name: "Lenovo", area: "Серверы и рабочие места", key: true },
   { slug: "mcafee", name: "McAfee", area: "Информационная безопасность", key: true },

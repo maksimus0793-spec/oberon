@@ -19,55 +19,38 @@ export default function ContactsPage() {
       />
 
       <section className="shell py-16 lg:py-20">
-        <div className="grid gap-5 lg:grid-cols-2">
-          <div className="rounded-[24px] bg-surface p-8">
-            <h2 className="text-xl font-semibold text-ink">Офис</h2>
+        <div className="rounded-[24px] bg-surface p-8 lg:p-10">
+          <h2 className="text-xl font-semibold text-ink">Офис</h2>
 
-            <dl className="mt-6 space-y-5 text-[15px]">
-              <div>
-                <dt className="text-ink-soft">Телефон</dt>
-                <dd className="mt-1">
-                  <a href={site.phones.office.href} className="block text-lg font-semibold text-ink hover:text-primary">
-                    {site.phones.office.label}
-                  </a>
-                </dd>
-              </div>
+          <dl className="mt-8 grid gap-8 text-[15px] sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <dt className="text-ink-soft">Телефон</dt>
+              <dd className="mt-1">
+                <a href={site.phones.office.href} className="block text-lg font-semibold text-ink hover:text-primary">
+                  {site.phones.office.label}
+                </a>
+              </dd>
+            </div>
 
-              <div>
-                <dt className="text-ink-soft">Режим работы</dt>
-                <dd className="mt-1 text-ink">{site.hours}</dd>
-              </div>
+            <div>
+              <dt className="text-ink-soft">Режим работы</dt>
+              <dd className="mt-1 text-ink">{site.hours}</dd>
+            </div>
 
-              <div>
-                <dt className="text-ink-soft">E-mail</dt>
-                <dd className="mt-1">
-                  <a href={`mailto:${site.emails.general}`} className="text-ink hover:text-primary">
-                    {site.emails.general}
-                  </a>
-                </dd>
-              </div>
+            <div>
+              <dt className="text-ink-soft">E-mail</dt>
+              <dd className="mt-1">
+                <a href={`mailto:${site.emails.general}`} className="text-ink hover:text-primary">
+                  {site.emails.general}
+                </a>
+              </dd>
+            </div>
 
-              <div>
-                <dt className="text-ink-soft">Адрес</dt>
-                <dd className="mt-1 text-ink">{site.address.full}</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div className="rounded-[24px] bg-primary p-8 text-white">
-            <h2 className="text-xl font-semibold">Отдел продаж</h2>
-
-            <p className="mt-6 text-lg font-semibold">{site.sales.name}</p>
-            <p className="mt-1 text-[15px] text-white/80">{site.sales.role}</p>
-
-            <a href={site.sales.phone.href} className="mt-5 block text-2xl font-semibold hover:text-white/80">
-              {site.sales.phone.label}
-            </a>
-
-            <p className="mt-6 text-[15px] leading-6 text-white/80">
-              Обсудим задачу, подберём решение и подготовим коммерческое предложение.
-            </p>
-          </div>
+            <div>
+              <dt className="text-ink-soft">Адрес</dt>
+              <dd className="mt-1 text-ink">{site.address.full}</dd>
+            </div>
+          </dl>
         </div>
 
         <div className="mt-14">

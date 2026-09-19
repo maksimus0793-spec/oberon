@@ -39,8 +39,8 @@ export default function AboutPage() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="prose-oberon max-w-[900px]">
             <p>
-              Стратегическими партнёрами компании являются ведущие мировые производители — Avaya, Oracle, Hitachi,
-              Lenovo, McAfee, Riverbed, Polycom, Plantronics, Jabra и многие другие.
+              Стратегическими партнёрами компании являются ведущие мировые производители — Oracle, Hitachi, Lenovo,
+              McAfee, Riverbed, Polycom, Plantronics, Jabra и многие другие.
             </p>
             <p>
               Компания ориентирована на комплексное решение задач благодаря наличию в своём штате высококвалифицированных

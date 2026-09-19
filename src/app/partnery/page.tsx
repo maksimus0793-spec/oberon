@@ -7,7 +7,7 @@ import { partners, technologyVendors } from "@/content/partners";
 export const metadata: Metadata = {
   title: "Партнёры",
   description:
-    "Стратегические партнёры Oberon: Avaya, Oracle, Lenovo, McAfee, Polycom, Verint, Huawei, Fortinet, Fujitsu и другие.",
+    "Стратегические партнёры Oberon: Oracle, Lenovo, McAfee, Polycom, Verint, Huawei, Fortinet, Fujitsu и другие.",
 };
 
 export default function PartnersPage() {

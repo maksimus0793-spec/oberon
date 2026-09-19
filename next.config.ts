@@ -5,14 +5,15 @@ import type { NextConfig } from "next";
  * чтобы не потерять накопленные ссылки и позиции в поиске.
  */
 const legacyRedirects = [
-  ["/service/telekomunikatsionnyie-i-strukturnyie-resheniya", "/uslugi/telekommunikatsionnye-resheniya"],
   ["/service/informatsionnaya-bezopasnost", "/uslugi/informatsionnaya-bezopasnost"],
   ["/service/vyichislitelnyie-sistemyi", "/uslugi/vychislitelnye-sistemy"],
   ["/service/servisnoe-soprovozhdenie", "/uslugi/servisnoe-soprovozhdenie"],
-  // Услуга снята с сайта — старый адрес ведём в общий раздел услуг.
+  // Услуги сняты с сайта — старые адреса ведём в общий раздел услуг.
   ["/service/obuchenie-i-sertifikatsiya", "/uslugi"],
+  ["/service/telekomunikatsionnyie-i-strukturnyie-resheniya", "/uslugi"],
 
-  ["/dopservice/kontakt-tsentryi", "/resheniya/kontakt-tsentry"],
+  // Направление снято с сайта — ведём в общий список решений.
+  ["/dopservice/kontakt-tsentryi", "/resheniya"],
   ["/dopservice/bezopasnost", "/resheniya/bezopasnost"],
   ["/dopservice/seti-peredachi-dannyih", "/resheniya/seti-peredachi-dannykh"],
   ["/dopservice/servisnoe-soprovozhdenie", "/resheniya/servisnoe-soprovozhdenie"],

@@ -9,7 +9,7 @@ import { solutions } from "@/content/solutions";
 export const metadata: Metadata = {
   title: "Решения",
   description:
-    "Контакт-центры, информационная безопасность, сети передачи данных, сервисное сопровождение, телефония, серверы и СХД.",
+    "Информационная безопасность, сети передачи данных, сервисное сопровождение, телефония, серверы и СХД.",
 };
 
 export default function SolutionsPage() {
