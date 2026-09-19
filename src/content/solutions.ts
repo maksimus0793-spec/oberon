@@ -1,6 +1,6 @@
 import type { ContentBlock } from "./services";
 
-export type SolutionIcon = "shield" | "network" | "camera" | "phone" | "server";
+export type SolutionIcon = "shield" | "network" | "camera" | "server";
 
 export type Solution = {
   slug: string;
@@ -92,28 +92,6 @@ export const solutions: Solution[] = [
           { text: "охранно-пожарная сигнализация;" },
           { text: "системы оповещения и управления эвакуацией;" },
           { text: "системы отображения информации и единого времени." },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "telefoniya",
-    title: "Телефония",
-    summary: "Корпоративная IP-телефония: от компактных офисных решений до распределённых систем связи.",
-    icon: "phone",
-    legacyPath: "/dopservice/telefoniya",
-    blocks: [
-      {
-        type: "paragraph",
-        text: "Мы внедряем корпоративную IP-телефонию любого масштаба — от компактного решения для одного офиса до распределённой системы связи с резервированием и несколькими площадками.",
-      },
-      {
-        type: "list",
-        items: [
-          { text: "миграция с аналоговых и устаревших АТС на IP-телефонию;" },
-          { text: "унифицированные коммуникации и мобильные приложения для сотрудников;" },
-          { text: "интеграция телефонии с CRM и бизнес-приложениями;" },
-          { text: "диагностика проблем на стыке системы телефонии и локальной сети." },
         ],
       },
     ],

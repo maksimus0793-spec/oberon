@@ -9,7 +9,7 @@ import { solutions } from "@/content/solutions";
 export const metadata: Metadata = {
   title: "Решения",
   description:
-    "Информационная безопасность, сети передачи данных, слаботочные системы, телефония, серверы и СХД.",
+    "Информационная безопасность, сети передачи данных, слаботочные системы, серверы и СХД.",
 };
 
 export default function SolutionsPage() {
