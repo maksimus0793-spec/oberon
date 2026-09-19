@@ -11,7 +11,7 @@ const path = require("node:path");
 function debugLog(hypothesisId, location, message, data) {
   const payload = {
     sessionId: "fd0969",
-    runId: "post-rollback",
+    runId: "post-fix",
     hypothesisId,
     location,
     message,
@@ -66,6 +66,9 @@ if (process.env.NEXT_TEST_WASM) {
 } else {
   debugLog("J", "server.js:boot", "NEXT_TEST_WASM is not set", {});
 }
+
+/* WASM-флаг только для сборки. В runtime мешает Passenger. */
+delete process.env.NEXT_TEST_WASM;
 
 let next;
 try {
