@@ -7,12 +7,8 @@
 const { createServer } = require("node:http");
 const next = require("next");
 
-/* WASM нужен только на сборке. В runtime переменная мешает старту Passenger. */
-delete process.env.NEXT_TEST_WASM;
-
 /* Passenger подставляет порт сам, значение ниже нужно для обычного запуска. */
 const port = Number(process.env.PORT) || 3000;
-if (!process.env.NODE_ENV) process.env.NODE_ENV = "production";
 
 const app = next({ dev: false, dir: __dirname });
 const handle = app.getRequestHandler();

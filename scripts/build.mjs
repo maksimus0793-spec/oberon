@@ -4,9 +4,6 @@ import { spawn } from "node:child_process";
 /*
  * На хостинге Hoster.kz glibc старше 2.29. Нативный SWC при загрузке
  * падает с SIGABRT, поэтому сборка идёт через Webpack + WASM-биндинги.
- *
- * Переменную ставим только в процессе сборки. В runtime её быть не должно:
- * иначе Next требует WASM-биндинги на каждом запросе и Passenger отдаёт 500.
  */
 process.env.NEXT_TEST_WASM = "1";
 

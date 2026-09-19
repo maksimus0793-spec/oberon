@@ -4,9 +4,6 @@
  *
  * Файл в JS, а не в TypeScript: иначе Next.js сам вызывает нативный SWC,
  * который на сервере Hoster.kz падает из-за старой glibc.
- *
- * NEXT_TEST_WASM здесь не ставим: конфиг читается и при запуске сайта.
- * В runtime переменная ломает prepare() — WASM оставляем только в scripts/build.mjs.
  */
 const legacyRedirects = [
   ["/service/informatsionnaya-bezopasnost", "/uslugi/informatsionnaya-bezopasnost"],
@@ -34,6 +31,11 @@ const legacyRedirects = [
 ];
 
 const nextConfig = {
+  experimental: {
+    /* На linux/x64 Next считает платформу поддерживаемой и тянет .node-файл.
+       WASM нужен, потому что glibc на хостинге старше 2.29. */
+    useWasmBinary: true,
+  },
   async redirects() {
     return [
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
