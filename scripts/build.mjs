@@ -5,16 +5,11 @@ import { spawn, spawnSync } from "node:child_process";
  * На хостинге Hoster.kz glibc старше 2.29. Нативный SWC при загрузке
  * падает с SIGABRT, поэтому сборка идёт через Webpack + WASM-биндинги.
  *
- * NEXT_TEST_WASM должен быть и в воркерах «Collecting page data»:
- * они вызывают installBindings() без флага и иначе снова тянут .node.
+ * Нельзя прокидывать --require в NODE_OPTIONS: Next склеивает флаги
+ * воркеров в один путь и падает с MODULE_NOT_FOUND.
+ * WASM включается переменной NEXT_TEST_WASM (её же ставит next.config.mjs).
  */
 process.env.NEXT_TEST_WASM = "1";
-
-const forceWasm = fileURLToPath(new URL("./force-wasm.cjs", import.meta.url));
-const previousNodeOptions = process.env.NODE_OPTIONS ?? "";
-process.env.NODE_OPTIONS = previousNodeOptions.includes(forceWasm)
-  ? previousNodeOptions
-  : `${previousNodeOptions} --require ${JSON.stringify(forceWasm)}`.trim();
 
 spawnSync(process.execPath, [fileURLToPath(new URL("./strip-native-swc.mjs", import.meta.url))], {
   stdio: "inherit",
