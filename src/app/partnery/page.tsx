@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ConsultationSection } from "@/components/consultation-section";
 import { PageHero } from "@/components/page-hero";
+import { PartnerLogo } from "@/components/partner-logo";
 import { partners, technologyVendors } from "@/content/partners";
 
 export const metadata: Metadata = {
@@ -28,8 +29,11 @@ export default function PartnersPage() {
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {key.map((p) => (
             <div key={p.slug} className="rounded-[24px] bg-surface p-8">
-              <p className="text-[28px] font-semibold tracking-tight text-ink">{p.name}</p>
-              <p className="mt-2 text-[15px] leading-6 text-ink-muted">{p.area}</p>
+              <div className="flex items-center gap-5">
+                <PartnerLogo partner={p} className="h-10 w-[120px]" />
+                <p className="text-[26px] font-semibold tracking-tight text-ink">{p.name}</p>
+              </div>
+              <p className="mt-4 text-[15px] leading-6 text-ink-muted">{p.area}</p>
             </div>
           ))}
         </div>
@@ -39,8 +43,11 @@ export default function PartnersPage() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {rest.map((p) => (
             <div key={p.slug} className="rounded-[24px] border border-line p-6">
-              <p className="text-xl font-semibold text-ink">{p.name}</p>
-              <p className="mt-1.5 text-sm leading-5 text-ink-muted">{p.area}</p>
+              <div className="flex items-center gap-4">
+                <PartnerLogo partner={p} className="h-7 w-[84px]" />
+                <p className="text-lg font-semibold text-ink">{p.name}</p>
+              </div>
+              <p className="mt-3 text-sm leading-5 text-ink-muted">{p.area}</p>
             </div>
           ))}
         </div>

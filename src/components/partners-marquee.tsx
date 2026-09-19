@@ -1,3 +1,4 @@
+import { PartnerLogo } from "@/components/partner-logo";
 import { partners } from "@/content/partners";
 
 /* Бесконечная лента вендоров — аналог swiper-карусели партнёров на oberon-it.ru. */
@@ -15,8 +16,9 @@ export function PartnersMarquee() {
             key={`${p.slug}-${i}`}
             className="flex h-[120px] w-[220px] shrink-0 flex-col items-center justify-center rounded-[24px] bg-white px-6 text-center"
           >
-            <span className="text-2xl font-semibold tracking-tight text-ink">{p.name}</span>
-            <span className="mt-1.5 text-xs leading-4 text-ink-soft">{p.area}</span>
+            <PartnerLogo partner={p} align="center" className="h-8 w-[140px]" />
+            <span className="mt-3 text-lg font-semibold tracking-tight text-ink">{p.name}</span>
+            <span className="mt-1 text-xs leading-4 text-ink-soft">{p.area}</span>
           </div>
         ))}
       </div>

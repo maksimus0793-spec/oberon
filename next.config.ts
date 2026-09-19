@@ -16,7 +16,8 @@ const legacyRedirects = [
   ["/dopservice/kontakt-tsentryi", "/resheniya"],
   ["/dopservice/bezopasnost", "/resheniya/bezopasnost"],
   ["/dopservice/seti-peredachi-dannyih", "/resheniya/seti-peredachi-dannykh"],
-  ["/dopservice/servisnoe-soprovozhdenie", "/resheniya/servisnoe-soprovozhdenie"],
+  // Направление снято с сайта — услуга сервисного сопровождения остаётся.
+  ["/dopservice/servisnoe-soprovozhdenie", "/uslugi/servisnoe-soprovozhdenie"],
   ["/dopservice/telefoniya", "/resheniya/telefoniya"],
   ["/dopservice/servera-i-sistemyi-hraneniya-dannyih", "/resheniya/servery-i-skhd"],
 
@@ -25,6 +26,7 @@ const legacyRedirects = [
   ["/partner/:slug", "/partnery"],
   ["/partner-category/:slug", "/partnery"],
   ["/kontaktyi", "/kontakty"],
+  ["/resheniya/servisnoe-soprovozhdenie", "/uslugi/servisnoe-soprovozhdenie"],
 ] as const;
 
 const nextConfig: NextConfig = {
