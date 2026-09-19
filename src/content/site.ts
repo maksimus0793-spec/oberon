@@ -1,5 +1,4 @@
-import { partners } from "./partners";
-import { services } from "./services";
+import { achievements } from "./company";
 
 /* Адрес офиса он же юридический — держим в одном месте, чтобы не расходился. */
 const address = {
@@ -13,7 +12,7 @@ export const site = {
   legalName: "ТОО «ОБЕРОН Групп»",
   url: "https://oberon.kz",
   description:
-    "Системный интегратор в Казахстане: информационная безопасность, вычислительные и слаботочные системы.",
+    "Системный интегратор в Казахстане: информационная безопасность, ИТ-инфраструктура, мультимедиа и слаботочные системы для B2B и B2G.",
 
   phones: {
     office: { label: "+7 (700) 327-0-888", href: "tel:+77003270888" },
@@ -44,18 +43,21 @@ export const site = {
       label: "Свидетельство о постановке на учёт по НДС",
       value: "Серия 60001 № 0054406 от 26 октября 2015 года",
     },
+    {
+      label: "Лицензия",
+      value: "Государственная лицензия III категории на строительно-монтажные работы",
+    },
   ],
 
   foundedYear: 2015,
 } as const;
 
 export function getCounters() {
-  return [
-    { value: new Date().getFullYear() - site.foundedYear, suffix: "+", title: "лет на ИТ-рынке Казахстана" },
-    { value: services.length, suffix: "", title: "ключевых ИТ-направления" },
-    { value: partners.length, suffix: "", title: "вендоров в партнёрской сети" },
-    { value: 24, suffix: "/7", title: "режим сервисной поддержки" },
-  ];
+  return achievements.map((item) => ({
+    value: item.value,
+    suffix: item.suffix,
+    title: item.title,
+  }));
 }
 
 export const nav = [
