@@ -5,11 +5,9 @@
  * Файл в JS, а не в TypeScript: иначе Next.js сам вызывает нативный SWC,
  * который на сервере Hoster.kz падает из-за старой glibc.
  *
- * NEXT_TEST_WASM выставляем здесь: панель часто запускает `next build` напрямую,
- * минуя scripts/build.mjs. Воркеры наследуют переменную после загрузки конфига.
+ * NEXT_TEST_WASM здесь не ставим: конфиг читается и при запуске сайта.
+ * В runtime переменная ломает prepare() — WASM оставляем только в scripts/build.mjs.
  */
-process.env.NEXT_TEST_WASM = "1";
-
 const legacyRedirects = [
   ["/service/informatsionnaya-bezopasnost", "/uslugi/informatsionnaya-bezopasnost"],
   ["/service/vyichislitelnyie-sistemyi", "/uslugi/vychislitelnye-sistemy"],

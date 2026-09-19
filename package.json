@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "postinstall": "node scripts/strip-native-swc.mjs",
     "build": "node scripts/build.mjs",
     "start": "next start",
     "serve": "node server.js",
