@@ -8,15 +8,38 @@ type Status = "idle" | "sending" | "sent";
 
 export function ConsultationForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("sending");
 
-    // Бэкенда пока нет: подключите сюда реальный обработчик заявок.
-    await new Promise((resolve) => setTimeout(resolve, 600));
-    setStatus("sent");
-    event.currentTarget.reset();
+    /* Ссылку на форму забираем сразу: после await React обнуляет currentTarget. */
+    const form = event.currentTarget;
+
+    setStatus("sending");
+    setError(null);
+
+    try {
+      const response = await fetch("/api/zayavka", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+
+      const result: { error?: string } = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setError(result.error ?? "Не получилось отправить заявку. Попробуйте ещё раз.");
+        setStatus("idle");
+        return;
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setError("Нет связи с сервером. Проверьте подключение и попробуйте ещё раз.");
+      setStatus("idle");
+    }
   }
 
   if (status === "sent") {
@@ -50,6 +73,22 @@ export function ConsultationForm() {
           />
         </label>
       </div>
+
+      {/* Ловушка для ботов: людям поле не видно и с клавиатуры недоступно. */}
+      <input
+        type="text"
+        name="company"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+      />
+
+      {error ? (
+        <p role="alert" className="mt-6 rounded-2xl bg-primary/10 px-5 py-4 text-sm leading-6 text-primary">
+          {error}
+        </p>
+      ) : null}
 
       <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-md text-xs leading-5 text-ink-soft">
