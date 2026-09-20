@@ -23,8 +23,8 @@ export const services: Service[] = [
     shortTitle: "Информационная безопасность",
     summary:
       "Проектирование и внедрение систем информационной безопасности для предприятий любого масштаба и государственного сектора.",
-    icon: "/services/security.png",
-    iconActive: "/services/security-active.png",
+    icon: "/media/services/security.png",
+    iconActive: "/media/services/security.png",
     legacyPath: "/service/informatsionnaya-bezopasnost",
     blocks: [
       {
@@ -101,8 +101,8 @@ export const services: Service[] = [
     shortTitle: "ИТ-инфраструктура",
     summary:
       "Оснащение предприятий ИТ-инфраструктурой: от поставок периферийного и серверного оборудования до построения ЦОД и ситуационных центров для B2B и B2G.",
-    icon: "/services/datacenter.png",
-    iconActive: "/services/datacenter-active.png",
+    icon: "/media/services/datacenter.png",
+    iconActive: "/media/services/datacenter.png",
     legacyPath: "/service/vyichislitelnyie-sistemyi",
     blocks: [
       {
@@ -185,8 +185,8 @@ export const services: Service[] = [
     shortTitle: "Слаботочные системы",
     summary:
       "Пожарная и охранная сигнализация, видеонаблюдение, СКУД, СКС, шлагбаумы, электромонтажные и строительно-монтажные работы.",
-    icon: "/services/lowvoltage.png",
-    iconActive: "/services/lowvoltage-active.png",
+    icon: "/media/services/lowvoltage.png",
+    iconActive: "/media/services/lowvoltage.png",
     blocks: [
       {
         type: "paragraph",
@@ -265,8 +265,8 @@ export const services: Service[] = [
     shortTitle: "Мультимедиа и ВКС",
     summary:
       "Видеоконференцсвязь, интерактивное оборудование, интеллектуальные решения для самообслуживания и конференц-залы «под ключ».",
-    icon: "/services/multimedia.png",
-    iconActive: "/services/multimedia-active.png",
+    icon: "/media/services/multimedia.png",
+    iconActive: "/media/services/multimedia.png",
     blocks: [
       {
         type: "paragraph",
