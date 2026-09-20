@@ -37,6 +37,7 @@ if (process.platform !== "linux") {
    * и грузит .node — воркеры Collecting page data падают с SIGABRT.
    */
   process.env.NEXT_TEST_WASM = "1";
+  process.env.OBERON_DEBUG_RUN = "post-fix";
   delete process.env.NEXT_DISABLE_SWC_WASM;
 
   const forceWasm = fileURLToPath(new URL("./force-wasm.cjs", import.meta.url));
