@@ -7,6 +7,9 @@
 const { createServer } = require("node:http");
 const next = require("next");
 
+/* WASM-флаг только для сборки. В runtime он мешает Passenger. */
+delete process.env.NEXT_TEST_WASM;
+
 /* Passenger подставляет порт сам, значение ниже нужно для обычного запуска. */
 const port = Number(process.env.PORT) || 3000;
 

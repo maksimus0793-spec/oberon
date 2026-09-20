@@ -31,6 +31,11 @@ const legacyRedirects = [
 ] as const;
 
 const nextConfig: NextConfig = {
+  experimental: {
+    /* На linux/x64 Next считает платформу поддерживаемой и тянет .node-файл.
+       WASM нужен, потому что glibc на хостинге старше 2.29. */
+    useWasmBinary: true,
+  },
   async redirects() {
     return [
       ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
