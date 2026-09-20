@@ -1,12 +1,15 @@
 import { existsSync, readdirSync, rmSync, statSync } from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-/*
- * require.resolve('@next/swc-linux-*/package.json') на этих пакетах часто
- * не срабатывает из-за exports — тогда нативный .node остаётся и воркеры
- * падают с SIGABRT. Удаляем каталоги по пути.
- */
+const require = createRequire(import.meta.url);
+// #region agent log
+const debugLog = require("./debug-log.cjs");
+// #endregion
+
+// require.resolve of linux SWC package.json often fails because of exports.
+// Native .node files then stay on disk and workers abort. Delete by path instead.
 const root = fileURLToPath(new URL("..", import.meta.url));
 const targets = [
   "@next/swc-linux-x64-gnu",
@@ -60,7 +63,7 @@ function removeNodeBinaries(dir) {
     if (stat.isDirectory()) {
       if (entry === ".bin" || entry === ".cache") continue;
       removeNodeBinaries(full);
-    } else if (entry.startsWith("next-swc.") && entry.endsWith(".node")) {
+    } else if (entry.startsWith("next-swc.linux-") && entry.endsWith(".node")) {
       rmSync(full, { force: true });
       removed.push(entry);
     }
@@ -75,3 +78,12 @@ console.log(
     ? `Removed native SWC: ${removed.join(", ")}`
     : "Native linux SWC packages were not present",
 );
+
+// #region agent log
+debugLog(
+  "scripts/strip-native-swc.mjs",
+  "native SWC strip finished",
+  { platform: process.platform, removed, node: process.version },
+  "A",
+);
+// #endregion

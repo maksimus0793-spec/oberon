@@ -8,12 +8,26 @@ const Module = require("module");
 const nativeSwc = /next-swc|@next[/\\]swc-linux/;
 const originalLoad = Module._load;
 const originalDlopen = process.dlopen;
+// #region agent log
+const debugLog = require("./debug-log.cjs");
+let loggedNativeBlock = false;
+// #endregion
+
+function blockNative(request) {
+  // #region agent log
+  if (!loggedNativeBlock) {
+    loggedNativeBlock = true;
+    debugLog("scripts/force-wasm.cjs", "blocked native SWC load", { request, pid: process.pid }, "D");
+  }
+  // #endregion
+  const error = new Error(`Failed to load SWC native binding ${request}: it was not installed`);
+  error.code = "MODULE_NOT_FOUND";
+  throw error;
+}
 
 Module._load = function loadWithoutNativeSwc(request, parent, isMain) {
   if (typeof request === "string" && nativeSwc.test(request)) {
-    const error = new Error(`Failed to load SWC native binding ${request}: it was not installed`);
-    error.code = "MODULE_NOT_FOUND";
-    throw error;
+    blockNative(request);
   }
 
   return originalLoad.call(this, request, parent, isMain);
@@ -21,9 +35,7 @@ Module._load = function loadWithoutNativeSwc(request, parent, isMain) {
 
 process.dlopen = function dlopenBlocked(mod, filename, flags) {
   if (typeof filename === "string" && nativeSwc.test(filename)) {
-    const error = new Error(`Failed to load SWC native binding ${filename}: it was not installed`);
-    error.code = "MODULE_NOT_FOUND";
-    throw error;
+    blockNative(filename);
   }
 
   return flags === undefined ? originalDlopen.call(process, mod, filename) : originalDlopen.call(process, mod, filename, flags);

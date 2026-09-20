@@ -2,11 +2,17 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 
 const require = createRequire(import.meta.url);
+// #region agent log
+const debugLog = require("./debug-log.cjs");
+// #endregion
 const swcIndex = require.resolve("next/dist/build/swc/index.js");
 let source = readFileSync(swcIndex, "utf8");
 
 if (source.includes("OBERON_HOST_PATCH")) {
   console.log("Next.js SWC host patch already applied");
+  // #region agent log
+  debugLog("scripts/patch-next-swc.mjs", "SWC patch already present", { swcIndex }, "E");
+  // #endregion
 } else {
   const wasmImport = "const importedRawBindings = await import((0, _url.pathToFileURL)(pkgPath).toString());";
   const wasmImportFixed =
@@ -29,4 +35,12 @@ if (source.includes("OBERON_HOST_PATCH")) {
   source = source.replace(loadNative, loadNativeBlocked);
   writeFileSync(swcIndex, source);
   console.log("Patched Next.js SWC loader for linux WASM");
+  // #region agent log
+  debugLog(
+    "scripts/patch-next-swc.mjs",
+    "SWC patch applied",
+    { swcIndex, hasWasmFix: source.includes("OBERON_HOST_PATCH") },
+    "E",
+  );
+  // #endregion
 }
