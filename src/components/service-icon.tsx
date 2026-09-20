@@ -155,38 +155,44 @@ function SirenMark({ stroke }: { stroke: string }) {
   return (
     <>
       <g className="circuit-orbit">
-        <circle cx="100" cy="100" r="82" strokeWidth="1.2" strokeDasharray="8 10 16 12" opacity="0.55" />
-        <circle className="circuit-spark" cx="100" cy="18" r="2.15" fill={stroke} stroke="none" />
-      </g>
-      <g className="circuit-orbit-rev">
-        <circle cx="100" cy="100" r="70" strokeWidth="1.1" strokeDasharray="4 20" opacity="0.35" />
+        <circle cx="100" cy="100" r="84" strokeWidth="1.15" strokeDasharray="14 12 6 16" opacity="0.5" />
+        <circle className="circuit-spark" cx="100" cy="16" r="2.15" fill={stroke} stroke="none" />
       </g>
 
-      <path d="M100 28 V46 M172 86 L158 92 M28 86 L42 92 M164 140 L150 132 M36 140 L50 132" strokeWidth="1.4" />
-      <path d="M64 46 L74 58 M136 46 L126 58" strokeWidth="1.3" className="circuit-flow-slow" />
+      <path d="M100 22 V38 M48 38 H36 M48 166 H36 M168 70 L156 78 M168 140 L156 132" strokeWidth="1.4" />
+      <path d="M36 56 L46 64 M36 148 L46 140" strokeWidth="1.3" className="circuit-flow-slow" />
 
-      <path d="M100 40 L100 54" strokeWidth="1.8" />
-      <path d="M64 54 L76 66 M136 54 L124 66" strokeWidth="1.7" />
-      <path d="M48 78 L64 86 M152 78 L136 86" strokeWidth="1.6" />
-      <path d="M44 108 L62 108 M156 108 L138 108" strokeWidth="1.55" />
+      <rect x="48" y="38" width="70" height="128" rx="7" strokeWidth="2" />
+      <rect x="56" y="48" width="54" height="108" rx="4" strokeWidth="1.3" opacity="0.65" />
+      <path d="M48 52 H40 M48 154 H40" strokeWidth="1.7" />
+      <circle cx="108" cy="108" r="5.5" strokeWidth="1.6" />
+      <path d="M108 108 H94" strokeWidth="1.8" />
 
-      <rect x="66" y="126" width="68" height="22" rx="5" strokeWidth="1.9" />
-      <path d="M78 126 V118 H122 V126" strokeWidth="1.7" />
-      <path d="M74 118 Q74 62 100 62 Q126 62 126 118 Z" strokeWidth="2.05" />
-      <path d="M86 118 Q86 78 100 78 Q114 78 114 118" strokeWidth="1.45" opacity="0.75" />
-      <circle cx="100" cy="96" r="8" strokeWidth="1.6" />
-      <circle className="circuit-spark" cx="100" cy="96" r="3.4" fill={stroke} stroke="none" />
-      <path className="circuit-flow" d="M66 137 H134" strokeWidth="1.35" />
-      <path d="M88 148 H112" strokeWidth="1.7" />
+      <rect x="132" y="78" width="32" height="48" rx="5" strokeWidth="1.9" />
+      <rect x="138" y="86" width="20" height="14" rx="2.5" strokeWidth="1.3" />
+      <circle className="circuit-spark" cx="148" cy="93" r="2.6" fill={stroke} stroke="none" />
+      <circle cx="140" cy="110" r="2" strokeWidth="1.2" />
+      <circle cx="148" cy="110" r="2" strokeWidth="1.2" />
+      <circle cx="156" cy="110" r="2" strokeWidth="1.2" />
+      <circle cx="140" cy="118" r="2" strokeWidth="1.2" />
+      <circle cx="148" cy="118" r="2" strokeWidth="1.2" />
+      <circle cx="156" cy="118" r="2" strokeWidth="1.2" />
+      <path className="circuit-flow" d="M118 102 H132" strokeWidth="1.55" />
 
-      <Node cx={100} cy={28} stroke={stroke} />
-      <Node cx={100} cy={40} stroke={stroke} delay={0.2} r={2.1} />
-      <Node cx={64} cy={54} stroke={stroke} delay={0.45} r={2.15} />
-      <Node cx={136} cy={54} stroke={stroke} delay={0.85} r={2.15} />
-      <Node cx={48} cy={78} stroke={stroke} delay={0.6} r={2.1} />
-      <Node cx={152} cy={78} stroke={stroke} delay={1.1} r={2.1} />
-      <Node cx={88} cy={148} stroke={stroke} delay={0.35} r={2.05} />
-      <Node cx={112} cy={148} stroke={stroke} delay={0.95} r={2.05} />
+      <g transform="rotate(-22 150 58)">
+        <rect x="132" y="44" width="40" height="26" rx="4" strokeWidth="1.8" />
+        <rect x="138" y="50" width="12" height="9" rx="1.5" strokeWidth="1.25" />
+        <path d="M154 52 H166 M154 58 H162" strokeWidth="1.2" />
+      </g>
+
+      <Node cx={100} cy={22} stroke={stroke} />
+      <Node cx={36} cy={38} stroke={stroke} delay={0.3} r={2.1} />
+      <Node cx={36} cy={166} stroke={stroke} delay={0.75} r={2.1} />
+      <Node cx={40} cy={52} stroke={stroke} delay={0.5} r={2.05} />
+      <Node cx={168} cy={70} stroke={stroke} delay={0.4} r={2.1} />
+      <Node cx={168} cy={140} stroke={stroke} delay={0.95} r={2.1} />
+      <Node cx={148} cy={93} stroke={stroke} delay={0.2} r={2.05} />
+      <Node cx={108} cy={108} stroke={stroke} delay={0.65} r={2.1} />
     </>
   );
 }

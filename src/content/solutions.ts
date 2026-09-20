@@ -69,7 +69,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "slabotochnye-sistemy",
-    title: "Слаботочные и охранные системы",
+    title: "Видеонаблюдение и охранные системы",
     summary: "Пожарная и охранная сигнализация, видеонаблюдение, СКУД, СКС, шлагбаумы — с монтажом и пусконаладкой.",
     icon: "camera",
     legacyPath: "/dopservice/slabotochnye-sistemy",
