@@ -1,29 +1,19 @@
 import { ButtonLink } from "@/components/button";
+import { HeroSphereVideo } from "@/components/hero-sphere-video";
 
 export function Hero() {
   return (
     <section className="shell pt-4">
       <div className="relative overflow-hidden rounded-[40px] bg-navy">
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-70 motion-reduce:hidden"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster="/media/hero-sphere-poster.jpg"
-          aria-hidden
-        >
-          <source src="/media/hero-sphere.mp4" type="video/mp4" />
-        </video>
+        <HeroSphereVideo />
         <img
           src="/media/hero-sphere-poster.jpg"
           alt=""
-          className="absolute inset-0 hidden h-full w-full object-cover opacity-70 motion-reduce:block"
+          className="absolute inset-0 hidden h-full w-full object-cover opacity-100 brightness-[1.28] contrast-[1.12] saturate-[1.25] motion-reduce:block"
           aria-hidden
         />
 
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/28 to-black/10" aria-hidden />
 
         <div className="relative px-6 py-20 sm:px-12 lg:px-20 lg:py-32">
           <div className="max-w-3xl">

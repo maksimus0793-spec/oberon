@@ -48,6 +48,7 @@ export default async function ServicePage({ params }: Props) {
                 alt=""
                 width={340}
                 height={230}
+                unoptimized
                 className="h-full w-auto object-contain object-left"
               />
             </div>

@@ -14,21 +14,26 @@ export function ConsultationSection() {
 
             <div className="mt-8 space-y-5">
               <div>
-                <p className="text-sm text-ink-soft">{site.hours}</p>
-                <a href={site.phones.office.href} className="text-2xl font-semibold text-ink transition-colors hover:text-primary">
+                <p className="text-sm text-primary">Телефон</p>
+                <a href={site.phones.office.href} className="text-lg text-ink transition-colors hover:text-primary">
                   {site.phones.office.label}
                 </a>
               </div>
 
               <div>
-                <p className="text-sm text-ink-soft">E-mail</p>
+                <p className="text-sm text-primary">Режим работы</p>
+                <p className="text-lg text-ink">{site.hours}</p>
+              </div>
+
+              <div>
+                <p className="text-sm text-primary">E-mail</p>
                 <a href={`mailto:${site.emails.general}`} className="text-lg text-ink transition-colors hover:text-primary">
                   {site.emails.general}
                 </a>
               </div>
 
               <div>
-                <p className="text-sm text-ink-soft">Адрес</p>
+                <p className="text-sm text-primary">Адрес</p>
                 <p className="text-lg text-ink">{site.address.short}</p>
               </div>
             </div>

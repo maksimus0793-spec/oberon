@@ -18,8 +18,10 @@ export function PartnerLogo({
 }) {
   if (!partner.logo) return null;
 
+  const scale = partner.slug === "brocade" ? (align === "center" ? "scale-125" : "origin-left scale-125") : "";
+
   return (
-    <span className={`relative block shrink-0 ${className}`}>
+    <span className={`relative block shrink-0 ${className} ${scale}`}>
       <Image
         src={partner.logo}
         alt=""

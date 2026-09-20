@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 
 import { Button } from "@/components/button";
+import { site } from "@/content/site";
 
 type Status = "idle" | "sending" | "sent";
 
@@ -47,7 +48,7 @@ export function ConsultationForm() {
       <div className="rounded-[24px] bg-white p-10 text-center">
         <p className="text-2xl font-semibold text-ink">Спасибо за обращение</p>
         <p className="mt-3 text-base leading-7 text-ink-muted">
-          Мы свяжемся с вами в рабочее время: Пн—Пт с 09:00 до 18:00.
+          Мы свяжемся с вами в рабочее время: {site.hours}.
         </p>
         <Button variant="secondary" className="mt-6" onClick={() => setStatus("idle")}>
           Отправить ещё одну заявку

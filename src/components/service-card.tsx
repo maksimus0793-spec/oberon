@@ -7,18 +7,15 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/uslugi/${service.slug}`}
-      className="group relative flex flex-col items-center rounded-[24px] bg-white p-8 text-center transition-colors duration-300 hover:bg-primary"
+      className="group relative flex flex-col items-center rounded-[24px] bg-white p-8 text-center transition-colors duration-300 hover:bg-primary-plate"
     >
       <div className="relative flex h-[180px] w-full items-center justify-center">
-        <span
-          className="absolute inset-x-6 inset-y-3 rounded-[28px] bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          aria-hidden
-        />
         <Image
           src={service.icon}
           alt=""
           fill
           sizes="(max-width: 1024px) 100vw, 33vw"
+          unoptimized
           className="object-contain object-center"
         />
       </div>

@@ -24,21 +24,21 @@ export default function ContactsPage() {
 
           <dl className="mt-8 grid gap-8 text-[15px] sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <dt className="text-ink-soft">Телефон</dt>
+              <dt className="text-primary">Телефон</dt>
               <dd className="mt-1">
-                <a href={site.phones.office.href} className="block text-lg font-semibold text-ink hover:text-primary">
+                <a href={site.phones.office.href} className="text-ink hover:text-primary">
                   {site.phones.office.label}
                 </a>
               </dd>
             </div>
 
             <div>
-              <dt className="text-ink-soft">Режим работы</dt>
+              <dt className="text-primary">Режим работы</dt>
               <dd className="mt-1 text-ink">{site.hours}</dd>
             </div>
 
             <div>
-              <dt className="text-ink-soft">E-mail</dt>
+              <dt className="text-primary">E-mail</dt>
               <dd className="mt-1">
                 <a href={`mailto:${site.emails.general}`} className="text-ink hover:text-primary">
                   {site.emails.general}
@@ -47,7 +47,7 @@ export default function ContactsPage() {
             </div>
 
             <div>
-              <dt className="text-ink-soft">Адрес</dt>
+              <dt className="text-primary">Адрес</dt>
               <dd className="mt-1 text-ink">{site.address.full}</dd>
             </div>
           </dl>
@@ -59,7 +59,7 @@ export default function ContactsPage() {
           <dl className="mt-8 divide-y divide-line border-y border-line">
             {site.requisites.map((r) => (
               <div key={r.label} className="grid gap-1 py-5 sm:grid-cols-[320px_1fr] sm:gap-8">
-                <dt className="text-[15px] text-ink-soft">{r.label}</dt>
+                <dt className="text-[15px] text-primary">{r.label}</dt>
                 <dd className="text-[15px] text-ink">{r.value}</dd>
               </div>
             ))}

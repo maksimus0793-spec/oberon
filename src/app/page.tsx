@@ -25,7 +25,7 @@ export default function HomePage() {
               <ServiceCard key={service.slug} service={service} />
             ))}
 
-            <div className="flex flex-col justify-between rounded-[24px] bg-primary p-8 text-white">
+            <div className="flex flex-col justify-between rounded-[24px] bg-primary-plate p-8 text-white">
               <div>
                 <h3 className="text-xl font-semibold leading-7">Не нашли нужное направление?</h3>
                 <p className="mt-3 text-base leading-6 text-white/85">
