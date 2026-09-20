@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ConsultationSection } from "@/components/consultation-section";
 import { ContentBlocks } from "@/components/content-blocks";
 import { PageHero } from "@/components/page-hero";
+import { ServiceIcon } from "@/components/service-icon";
 import { getService, services } from "@/content/services";
 import { solutions } from "@/content/solutions";
 
@@ -42,15 +42,8 @@ export default async function ServicePage({ params }: Props) {
       <section className="shell py-16 lg:py-20">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div>
-            <div className="mb-10 h-[200px] w-full max-w-[320px]">
-              <Image
-                src={service.iconActive}
-                alt=""
-                width={340}
-                height={230}
-                unoptimized
-                className="h-full w-auto object-contain object-left"
-              />
+            <div className="mb-10 flex h-[200px] w-full max-w-[320px] items-center justify-start">
+              <ServiceIcon name={service.icon} className="h-[180px] w-[180px]" />
             </div>
 
             <ContentBlocks blocks={service.blocks} />

@@ -42,9 +42,7 @@ export default async function SolutionPage({ params }: Props) {
       <section className="shell py-16 lg:py-20">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div>
-            <span className="mb-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-white">
-              <SolutionIcon name={solution.icon} className="h-8 w-8" />
-            </span>
+            <SolutionIcon name={solution.icon} className="mb-10 h-32 w-32" />
 
             <ContentBlocks blocks={solution.blocks} />
 

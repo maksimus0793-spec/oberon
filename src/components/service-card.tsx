@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 
+import { ServiceIcon } from "@/components/service-icon";
 import type { Service } from "@/content/services";
 
 export function ServiceCard({ service }: { service: Service }) {
@@ -10,14 +10,7 @@ export function ServiceCard({ service }: { service: Service }) {
       className="group relative flex flex-col items-center rounded-[24px] bg-white p-8 text-center transition-colors duration-300 hover:bg-primary-plate"
     >
       <div className="relative flex h-[180px] w-full items-center justify-center">
-        <Image
-          src={service.icon}
-          alt=""
-          fill
-          sizes="(max-width: 1024px) 100vw, 33vw"
-          unoptimized
-          className="object-contain object-center"
-        />
+        <ServiceIcon name={service.icon} className="h-[180px] w-[180px]" />
       </div>
 
       <h3 className="mt-6 w-full text-center text-xl font-semibold leading-7 text-ink transition-colors duration-300 group-hover:text-white">

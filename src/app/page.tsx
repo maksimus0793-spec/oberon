@@ -52,14 +52,14 @@ export default function HomePage() {
               <Link
                 key={solution.slug}
                 href={`/resheniya/${solution.slug}`}
-                className="group rounded-[24px] border border-line p-8 transition-colors duration-300 hover:border-primary"
+                className="group flex flex-col items-center rounded-[24px] border border-line p-8 text-center transition-colors duration-300 hover:border-primary"
               >
-                <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-surface text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
-                  <SolutionIcon name={solution.icon} className="h-7 w-7" />
-                </span>
+                <div className="flex h-[180px] w-full items-center justify-center">
+                  <SolutionIcon name={solution.icon} className="h-[180px] w-[180px]" />
+                </div>
 
-                <h3 className="mt-6 text-xl font-semibold leading-7 text-ink">{solution.title}</h3>
-                <p className="mt-2 text-base leading-6 text-ink-muted">{solution.summary}</p>
+                <h3 className="mt-6 w-full text-xl font-semibold leading-7 text-ink">{solution.title}</h3>
+                <p className="mt-2 w-full text-base leading-6 text-ink-muted">{solution.summary}</p>
               </Link>
             ))}
           </div>

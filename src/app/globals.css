@@ -132,9 +132,146 @@
   animation: oberon-marquee 90s linear infinite;
 }
 
+@keyframes circuit-flow {
+  to {
+    stroke-dashoffset: -152;
+  }
+}
+
+@keyframes circuit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes circuit-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.86);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+.circuit-icon {
+  overflow: visible;
+  filter:
+    drop-shadow(0 0 1px #ffb3a8)
+    drop-shadow(0 0 3px rgba(255, 60, 40, 0.55))
+    drop-shadow(0 0 10px var(--circuit-glow, rgba(204, 0, 0, 0.42)));
+}
+
+.circuit-icon .circuit-flow {
+  stroke-dasharray: 12 46;
+  animation: circuit-flow 6.5s linear infinite;
+  animation-delay: var(--circuit-delay, 0s);
+}
+
+.circuit-icon .circuit-flow-slow {
+  stroke-dasharray: 8 28;
+  animation: circuit-flow 9.5s linear infinite reverse;
+  animation-delay: var(--circuit-delay, 0s);
+}
+
+.circuit-icon .circuit-orbit,
+.circuit-icon .circuit-orbit-rev,
+.circuit-icon .circuit-platter,
+.circuit-icon .circuit-platter-2,
+.circuit-icon .circuit-platter-3 {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+
+.circuit-icon .circuit-orbit {
+  animation: circuit-spin 28s linear infinite;
+}
+
+.circuit-icon .circuit-orbit-rev {
+  animation: circuit-spin 36s linear infinite reverse;
+}
+
+.circuit-icon .circuit-platter {
+  animation: circuit-spin 3.6s linear infinite;
+}
+
+.circuit-icon .circuit-platter-2 {
+  animation: circuit-spin 4.4s linear infinite reverse;
+}
+
+.circuit-icon .circuit-platter-3 {
+  animation: circuit-spin 5.2s linear infinite;
+}
+
+.circuit-icon .circuit-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: circuit-pulse 2.8s ease-in-out infinite;
+}
+
+.circuit-icon .circuit-spark {
+  filter: drop-shadow(0 0 3px currentColor);
+}
+
+.group:hover .circuit-icon {
+  filter:
+    drop-shadow(0 0 1.2px #ffc4bc)
+    drop-shadow(0 0 5px rgba(255, 50, 40, 0.7))
+    drop-shadow(0 0 14px rgba(204, 0, 0, 0.5));
+}
+
+.service-circuit-icon {
+  --svc-from: #ff4a3d;
+  --svc-mid: #cc0000;
+  --svc-to: #8b0000;
+  --node-fill: #fff;
+  --circuit-glow: rgba(204, 0, 0, 0.48);
+}
+
+.group:hover .circuit-icon.service-circuit-icon {
+  --svc-from: #ffffff;
+  --svc-mid: #fff4f1;
+  --svc-to: #ffd6ce;
+  --node-fill: #9e1a1a;
+  --circuit-glow: rgba(255, 255, 255, 0.5);
+  filter:
+    drop-shadow(0 0 1px #fff)
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.5));
+}
+
+.group:hover .circuit-icon .circuit-flow {
+  animation-duration: 3.2s;
+}
+
+.group:hover .circuit-icon .circuit-orbit {
+  animation-duration: 14s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;
+  }
+
+  .circuit-icon .circuit-flow,
+  .circuit-icon .circuit-flow-slow,
+  .circuit-icon .circuit-orbit,
+  .circuit-icon .circuit-orbit-rev,
+  .circuit-icon .circuit-platter,
+  .circuit-icon .circuit-platter-2,
+  .circuit-icon .circuit-platter-3,
+  .circuit-icon .circuit-node {
+    animation: none;
+  }
+
+  .circuit-icon .circuit-node {
+    opacity: 1;
+    transform: none;
+  }
+
+  .circuit-icon .circuit-spark {
+    display: none;
   }
 
   html {

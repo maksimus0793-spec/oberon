@@ -4,13 +4,14 @@ export type ContentBlock =
   | { type: "callout"; text: string }
   | { type: "list"; items: { title?: string; text: string }[] };
 
+export type ServiceIcon = "shield" | "rack" | "siren" | "conference";
+
 export type Service = {
   slug: string;
   title: string;
   shortTitle: string;
   summary: string;
-  icon: string;
-  iconActive: string;
+  icon: ServiceIcon;
   /* Адрес страницы на старом сайте — есть не у всех услуг, нужен только для редиректов. */
   legacyPath?: string;
   blocks: ContentBlock[];
@@ -23,8 +24,7 @@ export const services: Service[] = [
     shortTitle: "Информационная безопасность",
     summary:
       "Проектирование и внедрение систем информационной безопасности для предприятий любого масштаба и государственного сектора.",
-    icon: "/media/services/security.png",
-    iconActive: "/media/services/security.png",
+    icon: "shield",
     legacyPath: "/service/informatsionnaya-bezopasnost",
     blocks: [
       {
@@ -101,8 +101,7 @@ export const services: Service[] = [
     shortTitle: "ИТ-инфраструктура",
     summary:
       "Оснащение предприятий ИТ-инфраструктурой: от поставок периферийного и серверного оборудования до построения ЦОД и ситуационных центров для B2B и B2G.",
-    icon: "/media/services/datacenter.png",
-    iconActive: "/media/services/datacenter.png",
+    icon: "rack",
     legacyPath: "/service/vyichislitelnyie-sistemyi",
     blocks: [
       {
@@ -185,8 +184,7 @@ export const services: Service[] = [
     shortTitle: "Слаботочные системы",
     summary:
       "Пожарная и охранная сигнализация, видеонаблюдение, СКУД, СКС, шлагбаумы, электромонтажные и строительно-монтажные работы.",
-    icon: "/media/services/lowvoltage.png",
-    iconActive: "/media/services/lowvoltage.png",
+    icon: "siren",
     blocks: [
       {
         type: "paragraph",
@@ -265,8 +263,7 @@ export const services: Service[] = [
     shortTitle: "Мультимедиа и ВКС",
     summary:
       "Видеоконференцсвязь, интерактивное оборудование, интеллектуальные решения для самообслуживания и конференц-залы «под ключ».",
-    icon: "/media/services/multimedia.png",
-    iconActive: "/media/services/multimedia.png",
+    icon: "conference",
     blocks: [
       {
         type: "paragraph",
