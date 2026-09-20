@@ -1,31 +1,43 @@
 import { fileURLToPath } from "node:url";
 import { spawn, spawnSync } from "node:child_process";
 
-/*
- * На Hoster.kz glibc старше 2.29. Нативный SWC при загрузке воркерами
- * «Collecting page data» роняет процесс (SIGABRT). Перед next build
- * удаляем linux .node и заставляем воркеры взять WASM.
- */
-process.env.NEXT_TEST_WASM = "1";
+const nextBin = fileURLToPath(new URL("../node_modules/next/dist/bin/next", import.meta.url));
 
-const forceWasm = fileURLToPath(new URL("./force-wasm.cjs", import.meta.url));
-process.env.NODE_OPTIONS = `--require ${JSON.stringify(forceWasm)}`;
+function runNextBuild() {
+  const child = spawn(process.execPath, [nextBin, "build", "--webpack"], {
+    stdio: "inherit",
+    env: process.env,
+  });
 
-const strip = spawnSync(process.execPath, [fileURLToPath(new URL("./strip-native-swc.mjs", import.meta.url))], {
-  stdio: "inherit",
-});
-
-if (strip.status) {
-  process.exit(strip.status);
+  child.on("exit", (code, signal) => {
+    if (signal) process.kill(process.pid, signal);
+    process.exit(code ?? 1);
+  });
 }
 
-const nextBin = fileURLToPath(new URL("../node_modules/next/dist/bin/next", import.meta.url));
-const child = spawn(process.execPath, [nextBin, "build", "--webpack"], {
-  stdio: "inherit",
-  env: process.env,
-});
+if (process.platform !== "linux") {
+  runNextBuild();
+} else {
+  /*
+   * На Hoster.kz glibc старше 2.29. Next на linux/x64 игнорирует useWasmBinary
+   * и грузит .node — воркеры Collecting page data падают с SIGABRT.
+   */
+  process.env.NEXT_TEST_WASM = "1";
+  delete process.env.NEXT_DISABLE_SWC_WASM;
 
-child.on("exit", (code, signal) => {
-  if (signal) process.kill(process.pid, signal);
-  process.exit(code ?? 1);
-});
+  const forceWasm = fileURLToPath(new URL("./force-wasm.cjs", import.meta.url));
+  const requireFlag = `--require ${JSON.stringify(forceWasm)}`;
+  process.env.NODE_OPTIONS = process.env.NODE_OPTIONS ? `${process.env.NODE_OPTIONS} ${requireFlag}` : requireFlag;
+
+  console.log("[oberon-build] Forcing SWC WASM and removing linux native binaries");
+
+  const prepare = spawnSync(process.execPath, [fileURLToPath(new URL("./prepare-host.mjs", import.meta.url))], {
+    stdio: "inherit",
+  });
+
+  if (prepare.status) {
+    process.exit(prepare.status);
+  }
+
+  runNextBuild();
+}
