@@ -15,31 +15,31 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="border-b border-line bg-surface">
+    <section className="page-hero">
       <div className="shell py-12 lg:py-16">
-        <nav aria-label="Хлебные крошки" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-ink-soft">
-          <Link href="/" className="transition-colors hover:text-primary">
+        <nav aria-label="Хлебные крошки" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-white/70">
+          <Link href="/" className="transition-colors hover:text-white">
             Главная
           </Link>
           {crumbs.map((c) => (
             <span key={c.label} className="flex items-center gap-2">
               <span aria-hidden>/</span>
               {c.href ? (
-                <Link href={c.href} className="transition-colors hover:text-primary">
+                <Link href={c.href} className="transition-colors hover:text-white">
                   {c.label}
                 </Link>
               ) : (
-                <span className="text-ink-muted">{c.label}</span>
+                <span className="text-white">{c.label}</span>
               )}
             </span>
           ))}
         </nav>
 
-        <h1 className="max-w-4xl text-[32px] font-semibold leading-tight text-ink sm:text-[40px] lg:text-[48px] lg:leading-[1.15]">
+        <h1 className="max-w-4xl text-[32px] font-semibold leading-tight text-white sm:text-[40px] lg:text-[48px] lg:leading-[1.15]">
           {title}
         </h1>
 
-        {lead ? <p className="mt-6 max-w-3xl text-lg leading-8 text-ink-muted">{lead}</p> : null}
+        {lead ? <p className="mt-6 max-w-3xl text-lg leading-8 text-white/85">{lead}</p> : null}
 
         {children}
       </div>

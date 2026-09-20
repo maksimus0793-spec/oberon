@@ -84,6 +84,34 @@
     font-weight: 600;
     color: var(--color-ink);
   }
+
+  /* Фон шапок внутренних страниц — дуги с oberoncapcorp.com. */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+  }
+
+  .page-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #cc0000;
+    background-image: url("/media/bg-red.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .page-hero > * {
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero::before {
+      background-image: url("/media/bg-red-mobile.jpg");
+    }
+  }
 }
 
 @keyframes oberon-marquee {
