@@ -24,7 +24,7 @@ type Particle = {
 };
 
 const mediaClass =
-  "absolute inset-0 h-full w-full object-contain object-center brightness-[1.18] contrast-[1.08] saturate-[1.2] motion-reduce:hidden";
+  "absolute inset-0 h-full w-full object-contain object-center brightness-[1.22] contrast-[1.1] saturate-[1.25] mix-blend-screen motion-reduce:hidden";
 
 function hash(n: number) {
   const s = Math.sin(n * 127.1) * 43758.5453123;
@@ -378,13 +378,13 @@ export function HeroSphereVideo() {
         </video>
         <canvas
           ref={canvasRef}
-          className="pointer-events-none absolute inset-0 h-full w-full motion-reduce:hidden"
+          className="pointer-events-none absolute inset-0 h-full w-full mix-blend-screen motion-reduce:hidden"
           aria-hidden
         />
         <img
           src="/media/hero-sphere-poster.jpg"
           alt=""
-          className="absolute inset-0 hidden h-full w-full object-contain brightness-[1.18] contrast-[1.08] saturate-[1.2] motion-reduce:block"
+          className="absolute inset-0 hidden h-full w-full object-contain brightness-[1.22] contrast-[1.1] saturate-[1.25] mix-blend-screen motion-reduce:block"
           aria-hidden
         />
         <div
