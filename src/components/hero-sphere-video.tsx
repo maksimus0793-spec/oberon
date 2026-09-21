@@ -359,37 +359,39 @@ export function HeroSphereVideo() {
   }, []);
 
   return (
-    <div className="relative min-h-[280px] w-full sm:min-h-[360px] lg:h-full lg:min-h-[560px]">
-      <video
-        ref={videoRef}
-        className={mediaClass}
-        width={1280}
-        height={720}
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/media/hero-sphere-poster.jpg"
-        aria-hidden
-      >
-        <source src="/media/hero-sphere.mp4" type="video/mp4" />
-      </video>
-      <canvas
-        ref={canvasRef}
-        className="pointer-events-none absolute inset-0 h-full w-full motion-reduce:hidden"
-        aria-hidden
-      />
-      <img
-        src="/media/hero-sphere-poster.jpg"
-        alt=""
-        className="absolute inset-0 hidden h-full w-full object-contain brightness-[1.18] contrast-[1.08] saturate-[1.2] motion-reduce:block"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 hidden w-16 bg-gradient-to-r from-navy to-transparent lg:block"
-        aria-hidden
-      />
+    <div className="relative flex min-h-[280px] w-full items-center sm:min-h-[360px] lg:h-full lg:min-h-[560px]">
+      <div className="relative aspect-video w-full">
+        <video
+          ref={videoRef}
+          className={mediaClass}
+          width={1280}
+          height={720}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/media/hero-sphere-poster.jpg"
+          aria-hidden
+        >
+          <source src="/media/hero-sphere.mp4" type="video/mp4" />
+        </video>
+        <canvas
+          ref={canvasRef}
+          className="pointer-events-none absolute inset-0 h-full w-full motion-reduce:hidden"
+          aria-hidden
+        />
+        <img
+          src="/media/hero-sphere-poster.jpg"
+          alt=""
+          className="absolute inset-0 hidden h-full w-full object-contain brightness-[1.18] contrast-[1.08] saturate-[1.2] motion-reduce:block"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-y-0 left-0 hidden w-16 bg-gradient-to-r from-navy to-transparent lg:block"
+          aria-hidden
+        />
+      </div>
     </div>
   );
 }
