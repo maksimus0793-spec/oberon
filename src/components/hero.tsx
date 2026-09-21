@@ -5,8 +5,8 @@ export function Hero() {
   return (
     <section className="shell pt-4">
       <div className="relative overflow-hidden rounded-[40px] bg-navy">
-        <div className="relative grid items-stretch lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
-          <div className="relative z-10 flex items-center px-6 py-16 sm:px-12 lg:px-20 lg:py-28">
+        <div className="relative grid items-stretch lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+          <div className="relative z-10 flex items-center px-6 py-16 sm:px-12 lg:px-16 lg:py-28 xl:px-20">
             <div className="max-w-3xl">
               <p className="mb-6 inline-flex rounded-full border border-white/25 px-4 py-1.5 text-sm text-white/80">
                 Системный интегратор в Казахстане
